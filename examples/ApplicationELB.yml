@@ -1,0 +1,166 @@
+region: us-east-1
+metrics:
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: HealthyHostCount
+  aws_dimensions:
+  - LoadBalancer
+  - TargetGroup
+  aws_statistics:
+  - Minimum
+  # In case you want to use some tag to select target group to monitor, or to have additional `info` metric
+  # with all target group tags as labels, use `aws_tag_select`.
+  # Since the TargetGroup dimension doesn't follow the convention for how to extract resource ids from ARN
+  # `arn_resource_id_regexp` is specified with an alternative regular expression.
+  aws_tag_select:
+    resource_type_selection: elasticloadbalancing:targetgroup
+    resource_id_dimension: TargetGroup
+    arn_resource_id_regexp: "(targetgroup/.*)$"
+    tag_selections:
+      Environment:
+      - production
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: UnHealthyHostCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: RequestCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Average
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: TargetResponseTime
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Average
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: ActiveConnectionCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: NewConnectionCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: RejectedConnectionCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: TargetConnectionErrorCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: RequestCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: IPv6RequestCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: RequestCountPerTarget
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: NonStickyRequestCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: HTTPCode_Target_2XX_Count
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: HTTPCode_Target_3XX_Count
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: HTTPCode_Target_4XX_Count
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: HTTPCode_Target_5XX_Count
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: HTTPCode_ELB_3XX_Count
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: HTTPCode_ELB_4XX_Count
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: HTTPCode_ELB_5XX_Count
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: ProcessedBytes
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: IPv6ProcessedBytes
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: ConsumedLCUs
+  # ALBs take 30 minutes to report this metrics.
+  delay_seconds: 1800
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: ClientTLSNegotiationErrorCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: TargetTLSNegotiationErrorCount
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: RuleEvaluations
+  aws_dimensions:
+  - LoadBalancer
+  aws_statistics:
+  - Sum
